@@ -145,13 +145,21 @@ Jenkins Dashboard → Credentials → Global → Add Credentials :
 
 ### Security Features in Jenkinsfile:
 
-1. **Secret scanning** : Checks for hardcoded secrets in code
+My Jenkins pipeline took quite a long time to build (around 17 minutes), and due to system limitations, I had to manually abort it before completion.
+
+![alt text](assets/image11.png)
+
+
+
+But the pipeline was set up properly and included all the required steps and security features.
+
+1. **Secret scanning** to  check for hardcoded secrets
 
 2. **Non-root validation** : Verifies containers run as non-root users
 
 3. **Secure deployment** : Only deploys from main branch
 
-4. **Cleanup** : Removes local images and clears build cache after deployment
+4. **Cleanup** to remove local images and clear build cache
 
 ### GitHub Actions Secure Workflow
 
@@ -254,7 +262,15 @@ bat 'docker build -t ${BACKEND_IMAGE} -f to-do/Dockerfile to-do/'
 
 ```
 
-#### Challenge 3: Alpine Linux User Management Commands
+#### Challenge 3: PC Freezes When Using Docker
+1. Issue :
+My PC would freeze or become very slow when running Docker commands like building images or starting containers.
+
+2. Solution:
+I reduced CPU and memory allocation for Docker in Docker Desktop settings, closed unnecessary apps to free resources, and used lightweight Docker images to lower system load.
+
+
+#### Challenge 4: Alpine Linux User Management Commands
 
 1. Issue: When I tried creating non-root users in Alpine-based Docker images, the standard Linux commands didn't work.
 
@@ -274,6 +290,9 @@ RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
 
 ```
+
+
+
 
 
 This assignment really helped me understand how to add security in a CI/CD pipeline. I learned how to run Docker containers as non-root users and used Docker secrets to keep sensitive data safe. In Jenkins, I stored DockerHub credentials properly and added steps to check for security issues.
