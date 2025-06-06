@@ -234,19 +234,19 @@ After running docker-compose up, I was able to verify that my frontend was deplo
 ### Challenges Faced and Solutions
 
 #### Challenge 1: Docker Secrets vs Environment Variables
-**Issue**: I initially considered using environment variables for secrets but realized this wasn't secure enough.
+1. Issue: I initially considered using environment variables for secrets but realized this wasn't secure enough.
 
-**Solution**: I implemented Docker secrets mounting as files instead for better security.
+2. Solution: I implemented Docker secrets mounting as files instead for better security.
 
-**Why**: Files are more secure than environment variables which can be exposed in process lists.
+3. Why: Files are more secure than environment variables which can be exposed in process lists.
 
 
 
 #### Challenge 2: Jenkins Pipeline Windows Commands
 
-**Issue**: My pipeline needed to work on Windows Jenkins agent, but I was using Linux commands.
+1. Issue: My pipeline needed to work on Windows Jenkins agent, but I was using Linux commands.
 
-**Solution**: I used bat commands instead of sh commands throughout my Jenkinsfile.
+2. Solution: I used bat commands instead of sh commands throughout my Jenkinsfile.
 Implementation:
 
 ```
@@ -256,14 +256,14 @@ bat 'docker build -t ${BACKEND_IMAGE} -f to-do/Dockerfile to-do/'
 
 #### Challenge 3: Alpine Linux User Management Commands
 
-**Issue**: When I tried creating non-root users in Alpine-based Docker images, the standard Linux commands didn't work.
+1. Issue: When I tried creating non-root users in Alpine-based Docker images, the standard Linux commands didn't work.
 
 ```
 /bin/sh: groupadd: not found
 /bin/sh: useradd: not found
 ```
 
-**Solution**: I used Alpine-specific commands instead:
+2. Solution: I used Alpine-specific commands instead:
 
 ```
 # What I tried first (didn't work)
